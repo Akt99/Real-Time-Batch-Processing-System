@@ -64,13 +64,13 @@ Polling or WebSocket
 
 ## Application Flow
 
-1 User uploads CSV using POST jobs
-2 Backend creates job with status pending
-3 User starts job using POST jobs id start
-4 Worker processes file in batches
-5 Database is updated after each batch
-6 Frontend polls job status
-7 User sees live progress
+1. User uploads CSV using POST jobs </br>
+2. Backend creates job with status pending </br>
+3. User starts job using POST jobs id start </br>
+4. Worker processes file in batches </br>
+5. Database is updated after each batch </br>
+6. Frontend polls job status </br>
+7. User sees live progress </br>
 
 ---
 
