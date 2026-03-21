@@ -117,19 +117,75 @@ frontend
 
 ---
 
+
+
 ## API Endpoints
 
-Upload CSV
-POST jobs
+### Upload CSV
 
-Start Processing
-POST jobs id start
+**POST /jobs**
 
-Get Job Status
-GET jobs id
+Accepts a CSV file and creates a new job.
 
-Get Transactions
-GET jobs id transactions
+**Request**
+
+* Content Type: multipart form data
+* File: CSV file containing transactions
+
+**Response**
+
+* job id
+* status set to pending
+
+---
+
+### Start Processing
+
+**POST /jobs/{id}/start**
+
+Triggers background processing for the given job.
+
+**Behavior**
+
+* Changes job status to running
+* Starts batch processing
+
+---
+
+### Get Job Status
+
+**GET /jobs/{id}**
+
+Returns the current status and progress of the job.
+
+**Response Fields**
+
+* id
+* status
+* total_records
+* processed_records
+* valid_records
+* invalid_records
+* suspicious_records
+* progress_percent
+
+---
+
+### Get Transactions
+
+**GET /jobs/{id}/transactions**
+
+Fetches processed transactions for a job.
+
+**Features**
+
+* Pagination support
+* Filtering by status:
+
+  * valid
+  * invalid
+  * suspicious
+
 
 ---
 
@@ -171,30 +227,60 @@ Invalid when any validation fails
 
 ## Setup Instructions
 
-### Backend
+## Docker Setup
+
+The Docker Compose setup initializes the following services:
+
+* db for PostgreSQL
+* redis for Celery broker and backend
+* backend for FastAPI application
+* worker for Celery batch processing
+* frontend for React application
+
+---
+
+## Docker Commands
+
+### Start Services
 
 ```bash
-cd backend
-pip install -r requirements.txt
-uvicorn app.main:app --reload
+docker compose up -d
 ```
 
-### Frontend
+Starts all services in detached mode.
+
+---
+
+### View Logs
 
 ```bash
-cd frontend
-npm install
-npm run dev
+docker compose logs -f backend
+docker compose logs -f worker
+docker compose logs -f frontend
 ```
+
+Displays real time logs for selected services.
+
+---
+
+### Stop Services
+
+```bash
+docker compose down
+```
+
+Stops and removes all running containers.
+
+
 
 ---
 
 ## Design Decisions
 
-Batch processing is used for scalability
-Separation of concerns across layers
-Polling is used for simplicity
-PostgreSQL is used for reliability and indexing
+Batch processing is used for scalability </br>
+Separation of concerns across layers </br>
+Polling is used for simplicity </br>
+PostgreSQL is used for reliability and indexing </br>
 
 ---
 
