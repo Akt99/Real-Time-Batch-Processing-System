@@ -231,6 +231,25 @@ Invalid when any validation fails
 
 ## Setup Instructions
 
+
+
+### Prerequisites
+
+- Docker Desktop installed and running
+
+### Environment Variables
+
+Create `backend/.env`:
+
+```env
+DATABASE_URL=postgresql+psycopg://postgres:postgres@db:5432/batch_processing
+CELERY_BROKER_URL=redis://redis:6379/0
+CELERY_RESULT_BACKEND=redis://redis:6379/1
+CORS_ORIGINS=["http://localhost:3000"]
+UPLOAD_DIR=storage/uploads
+BATCH_SIZE=100
+```
+
 ## Docker Setup
 
 The Docker Compose setup initializes the following services:
