@@ -275,6 +275,56 @@ docker compose down
 
 Stops and removes all running containers.
 
+## Database Migration and Schema Setup
+
+This project uses SQLAlchemy metadata initialization for database schema setup instead of a dedicated migration tool such as Alembic.
+
+---
+
+### Create the Database Schema
+
+#### Local Setup
+
+```bash
+cd backend
+python -m app.db.init_db
+```
+
+#### Docker Setup
+
+```bash
+docker compose exec backend python -m app.db.init_db
+```
+
+These commands create the required tables in PostgreSQL based on the defined SQLAlchemy models.
+
+---
+
+### Current Tables
+
+The schema currently includes the following tables:
+
+* jobs
+* transactions
+
+---
+
+### Notes
+
+* This project does not currently use versioned migrations with Alembic
+* Schema creation is handled directly through SQLAlchemy model definitions
+* If the schema evolves in the future, it is recommended to integrate Alembic for proper migration management
+* Changes such as adding new fields or enum values (for example, additional job statuses) should ideally be managed through migrations
+
+---
+
+### Recommendation
+
+For production readiness and long term maintainability, integrating Alembic is recommended to:
+
+* Track schema changes
+* Support versioned migrations
+* Enable safe database updates across environments
 
 
 ---
