@@ -21,7 +21,7 @@ CSV Upload and Job Creation
 Batch Processing using fixed size batches
 Real time Job Progress Tracking
 Data Validation and Classification
-Filtering by valid invalid and suspicious records
+Filtering by valid invalid and suspicious records.
 Clean and scalable architecture
 
 ---
