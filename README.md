@@ -60,7 +60,7 @@ Background Tasks or Celery
 
 ### Frontend
 
-React with Hooks
+React with Hooks.
 Axios
 Polling or WebSocket
 
