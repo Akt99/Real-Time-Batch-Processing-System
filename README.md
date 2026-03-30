@@ -17,12 +17,12 @@ View processed results with filtering and pagination
 
 ## Key Features
 
-CSV Upload and Job Creation
-Batch Processing using fixed size batches
-Real time Job Progress Tracking
-Data Validation and Classification
+CSV Upload and Job Creation.
+Batch Processing using fixed size batches.
+Real time Job Progress Tracking.
+Data Validation and Classification.
 Filtering by valid invalid and suspicious records.
-Clean and scalable architecture
+Clean and scalable architecture.
 
 ---
 
